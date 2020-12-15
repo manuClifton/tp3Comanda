@@ -99,7 +99,6 @@ class ComandaController{
                         //modificar mesa
                         $mesa = Mesa::where('codigo', $codigo_mesa)->first();
     
-
                         for ($i=0; $i < count($pedidos); $i++) { 
                             $pedidos[$i]->id_menu;
                             $menuExiste =  Menu::where('id',  $pedidos[$i]->id_menu)->first();
@@ -107,7 +106,6 @@ class ComandaController{
                             //die;
                             $filaMenu = json_decode($menuExiste);
                             $contador += $filaMenu->precio * $pedidos[$i]->cantidad;
-
                         }
 
                         try {
@@ -123,6 +121,7 @@ class ComandaController{
                             $comanda->tiempo_estimado = new DateTime();
                             $comanda->tiempo_estimado->setTime(00,rand(10, 25),00);
      
+                            $comanda->save();
                             $result = new Resultado(true, $comanda, 200);
                             $response->getBody()->write(json_encode($result)); 
                         } catch (\Throwable $th) {
