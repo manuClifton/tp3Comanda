@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-use \Firebase\JWT\JWT;
+
 use Slim\Factory\AppFactory;
 use App\Components\Resultado;
 use App\Models\Comanda;
@@ -13,13 +13,13 @@ use App\Models\Pedido;
 use App\Models\Cliente;
 use App\Models\Menu;
 use App\Models\Mesa;
-use App\Models\Usuario;
+
 use App\Models\Encuesta;
 use DateTime;
 
 $app = AppFactory::create();
 
-class ComandaControllers{
+class ComandaController{
 
     public function getAll(Request $request, Response $response) 
     {
@@ -107,12 +107,8 @@ class ComandaControllers{
                             //die;
                             $filaMenu = json_decode($menuExiste);
                             $contador += $filaMenu->precio * $pedidos[$i]->cantidad;
-    
-                            //$user =  Usuario::where('id',  $pedidos[$i]->id_menu)->first();           ///////////////////////////// ACA TE QUEDASTE !!!
 
                         }
-                        //echo $contador;
-                        //die;
 
                         try {
                             //de cliente
@@ -126,14 +122,7 @@ class ComandaControllers{
                             $comanda->precio = $contador;
                             $comanda->tiempo_estimado = new DateTime();
                             $comanda->tiempo_estimado->setTime(00,rand(10, 25),00);
-                            $comanda->save();
-    
-                            //$comanda->created_at = new DateTime();
-                            //$date =  $comanda->created_at;
-                            //echo $comanda->created_at;
-                            //echo $date->modify('+20 minute');
-                            //echo $comanda->tiempo_entrega = ($comanda->created_at)::modify(+$parserBody['tiempo_estimado']);
-                           // die;
+     
                             $result = new Resultado(true, $comanda, 200);
                             $response->getBody()->write(json_encode($result)); 
                         } catch (\Throwable $th) {

@@ -15,7 +15,7 @@ use Config\Database;
 use App\Controllers\LoginController;
 use App\Controllers\UsuarioController;
 use App\Controllers\MesaController;
-use App\Controllers\ComandaControllers;
+use App\Controllers\ComandaController;
 use App\Controllers\PedidoController;
 use App\Middlewares\JsonMiddleware;
 use App\Middlewares\AuthMiddleware;
@@ -35,10 +35,10 @@ $app->group('/login', function (RouteCollectorProxy $group) {
 ->add(new JsonMiddleware);
 
 $app->group('/comanda', function (RouteCollectorProxy $group) {
-    $group->get('[/]', ComandaControllers::class.":getAll")->add(new AuthMiddleware("socio"));
-    $group->get('/{codigo_pedido}', ComandaControllers::class.":getOne")->add(new AuthMiddleware("socio"));
-    $group->post('[/]', ComandaControllers::class.":addOne")->add(new AuthMiddleware("socio"));
-    $group->post('/{codigo_pedido}', ComandaControllers::class.":updateOne")->add(new AuthMiddleware("socio"));
+    $group->get('[/]', ComandaController::class.":getAll")->add(new AuthMiddleware("socio"));
+    $group->get('/{codigo_pedido}', ComandaController::class.":getOne")->add(new AuthMiddleware("socio"));
+    $group->post('[/]', ComandaController::class.":addOne")->add(new AuthMiddleware("socio"));
+    $group->post('/{codigo_pedido}', ComandaController::class.":updateOne")->add(new AuthMiddleware("socio"));
 })
 ->add(new JsonMiddleware);
 
@@ -68,8 +68,8 @@ $app->group('/mesa', function (RouteCollectorProxy $group) {
 ->add(new JsonMiddleware);
 
 $app->group('/cliente', function (RouteCollectorProxy $group) {
-    $group->get('/{codigo_mesa}/{codigo_pedido}', ComandaControllers::class .":tiempoEspera");
-    $group->post('/encuesta', ComandaControllers::class.":addEncuesta");
+    $group->get('/{codigo_mesa}/{codigo_pedido}', ComandaController::class .":tiempoEspera");
+    $group->post('/encuesta', ComandaController::class.":addEncuesta");
 })->add(new JsonMiddleware);
 
 
