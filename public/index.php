@@ -26,7 +26,7 @@ $conn = new Database;
 
 $app = AppFactory::create();
 
-$app->setBasePath('/TPComanda/public');
+$app->setBasePath('/tp3Comanda/public');
 
 $app->group('/login', function (RouteCollectorProxy $group) {
     $group->get('[/]', LoginController::class.":getAll")->add(new AuthMiddleware("socio"));
