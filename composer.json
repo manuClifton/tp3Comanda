@@ -1,0 +1,23 @@
+{
+    "name": "manuelclifton/tp-comanda",
+    "description": "",
+    "authors": [
+        {
+            "name": "Manuel Clifton",
+            "email": "manuclifton@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.2",
+        "illuminate/database": "^8.16",
+        "illuminate/events": "^8.16",
+        "firebase/php-jwt": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Config\\":"config/",
+            "App\\":"src/"
+        }
+    }
+}
