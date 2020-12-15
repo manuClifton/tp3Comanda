@@ -14,7 +14,8 @@ $app = AppFactory::create();
 
 class LoginController{
 
-    public function getAll(Request $request, Response $response) {
+    public function getAll(Request $request, Response $response) 
+    {
         $rta = Login::get();
 
         if(count($rta) == 0){
@@ -28,7 +29,8 @@ class LoginController{
         return $response;
     }
 
-    public function login(Request $request, Response $response) {
+    public function login(Request $request, Response $response) 
+    {
 
         $body = $request->getParsedBody();
         $email = $body['email'];

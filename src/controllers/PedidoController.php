@@ -34,9 +34,9 @@ class PedidoController{
     //Trae el primer pedido con ese codigo
     public function getOne(Request $request, Response $response, $args) 
     {
-        $rta = Pedido::where('codigo',$args['codigo_pedido'])->first();
+        $rta = Pedido::where('codigo',$args['codigo_pedido'])->get();
 
-        if(!$rta){
+        if(count($rta) == 0){
             $result = new Resultado(true, "NO EXISTE EL PEDIDO", 200);
             $response->getBody()->write(json_encode($result)); // save devuelve true o false
         }
